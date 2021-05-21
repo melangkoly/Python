@@ -73,7 +73,16 @@ def set_oper():
     # 차집합
     print("전체 집합 차집합 짝수 집합 : ", numbers.difference(evens))
     print("전체 집합 차집합 짝수 집합 -> 홀수 집합? ", numbers - evens == odds )
+
+def loop():
+    # numbers를 순회하면 출력
+    for item in numbers:
+        print(item, end = " ")
+    else:
+        print()
+
 if __name__ == "__main__":
     #define_set()
     #set_methods()
-    set_oper()
+    #set_oper()
+    loop()
