@@ -86,7 +86,7 @@ def list_oper():
     lst[:0] = ['prepended']
     print(lst)
 
-    # 다양한 기초 산술 함수 제공
+    # 다양한 기초 산술 함수 제공 ㅋ
     lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     print("SUM : ", sum(lst))
     print("MIN : ", min(lst))
