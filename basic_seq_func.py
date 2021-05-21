@@ -74,7 +74,7 @@ def using_zip():
         print(eng, "->", kor)
 
     engkor = zip(english, korean)
-    # 인덱스, 영어, 한국어
+    # 인덱스, 영어, 한국어z
     for index, (eng, kor) in enumerate(engkor):
         print(index, eng, kor)
 
