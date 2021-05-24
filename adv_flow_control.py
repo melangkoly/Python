@@ -69,7 +69,7 @@ def for_ex():
         print()
 
 
-    for i in range(10):
+    #for i in range(10):
 
 def while_ex():
     """
