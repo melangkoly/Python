@@ -76,7 +76,56 @@ def object_id():
     # == : 동등성의 비교 (값이 같은가), is 는 동일성의 비교 ( 주소가 같은가)
     print("불변 객체의 비교 : ", i1 == i2, i1 is i2)
     print("가변 객체의 비교 : ", lst1 == lst2, lst1 is lst2)
+
+def object_copy():
+    """
+    객체의 복제
+    """
+    import  copy
+
+    # 레퍼런스 복사 : 객체의 주소값만 복사 -> 같은 객체
+    a = 1
+    b = a
+    print("a is b ? ", a is b)
+
+    # 얕은 복제
+    a = [1, 2, 3]
+    b = [4, 5, 6]
+    x = [a, b, 100]
+    print("a :", a)
+    print("b :", b)
+    print("x :", x)
+    y = x
+
+    print("x is y ?", x is y) # 같은 객체다
+    x[0][2] = 10
+    print("x :",x)
+    print("y:", y)
+
+    y = copy.copy(x)
+    print("얕은 복제 :",  x is y) # 다른 객체다
+    print("x :", x)
+    print("y:", y)
+    x[0][2] = 3
+    print("x :", x)
+    print("y:", y)
+    # 객체 자체는 별개의 객체로 복제 됬지만
+    # 내부 데이터는 여전히 동일 객체다
+    print("x[0] is y[0] ? ", x[0] is y[0])
+
+    # deepcopy (깊은 복제)
+    # 가장 하위의 요소로부터 새 객체를 주기적으로 만들어서 객체를 재구성
+    y = copy.deepcopy(x)
+    print("x is y ? ", x is y)
+    print("x[0] is y[0] ?", x[0] is y[0])
+    print("x[1] is y[1] ? ", x[1] is y[1])
+    x[0][2] = 20
+    print("x:", x)
+    print("y:", y)
+
+
 if __name__ == "__main__":
     #symbol_table()
     #ref_count()
-    object_id()
+    #object_id()
+    object_copy()
