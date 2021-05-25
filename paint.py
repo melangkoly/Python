@@ -48,7 +48,7 @@ def test_print():
     # __str__ : 비공식적 문자열 (일반 사용자용)
     # __repr__ : 공식적 문자열 (개발자용)
 
-def arith_oper_overriding():
+def arith_oper_overloading():
     p1 = Point(10, 20)
     p2 = Point(30, 40)
 
@@ -69,10 +69,18 @@ def arith_oper_overriding():
     p2 = Point(30 ,40)
     print(p1 - p2)
 
+    p1 = Point(10, 20)
+    print(p1 - 10)
+
+    p1 = Point(10, 20)
+    p2 = Point(10, 20)
+
+    print("p1 == p2 ? ", p1 == p2)
+
 if __name__ == "__main__":
     #bound_class_method()
     #unbound_class_method()
     #class_member_test()
     #test_lifecycle()
     #test_print()
-    arith_oper_overriding()
+    arith_oper_overloading()
