@@ -17,6 +17,7 @@ def create_connection(db_file):
         return None # 접속 실패시 None 반환
     return conn
 
+# 파라미터 이용 INSERT
 def test_insert_data(db_file, name, category, region):
     conn = create_connection(db_file)
     cursor = conn.cursor()
@@ -30,6 +31,24 @@ def test_insert_data(db_file, name, category, region):
     print("{}개의 레코드가 영향을 받음".format(res.rowcount))
     conn.commit()
     conn.close()
+
+def test_delete_all(db_file):
+    conn = create_connection(db_file)
+    sql = "DELETE FROM customer"
+    res = conn.execute(sql)
+
+    print("{} 개의 레코드가 삭제됨".format(res.rowcount))
+    conn.commit()
+    conn.close()
+
+def test_insert_bulk_data(db_file):
+    # 테스트 데이터 여러개 insert
+    test_delete_all(db_file)
+    test_insert_data(db_file, "둘리", 1, "부천")
+    test_insert_data(db_file, "고길동", 2, "서울")
+    test_insert_data(db_file, "이찬우", 3, "서울")
+    test_insert_data(db_file, "홍길동", 4, "서울")
+    test_insert_data(db_file, "이수민", 5, "부산")
 
 def test_connection(db_file):
     conn = create_connection(db_file)
@@ -58,4 +77,6 @@ def test_create_table(db_file):
 if __name__ == "__main__":
     db_file = "./database/mysqlite.db"
     #test_connection(db_file)
-    test_create_table(db_file)
+    #test_create_table(db_file)
+    #test_insert_data(db_file, "둘리", 1, "부천")
+    test_insert_bulk_data(db_file)
