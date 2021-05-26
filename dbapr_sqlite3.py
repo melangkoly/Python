@@ -69,8 +69,8 @@ def test_search_data(db_file):
     #   플레이스 홀더에 : 키로 이름을 명명
     #   데이터는 dict로 전달
     sql = """\
-    SELECT name, category, region FROM customer
-    WHERE region =: region OR category =: category
+    SELECT name, region FROM customer
+    WHERE region=:region OR category=:category
     """
     cursor = conn.execute(sql, {
         "region": "부천",
