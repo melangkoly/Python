@@ -50,6 +50,36 @@ def test_insert_bulk_data(db_file):
     test_insert_data(db_file, "홍길동", 4, "서울")
     test_insert_data(db_file, "이수민", 5, "부산")
 
+def test_select_data(db_file):
+    #conn = create_connection(db_file)
+    with create_connection(db_file) as conn:  # 추천 -> with 문 종료 -> 자동 close
+        # select 쿼리 수행
+        sql = "SELECT * FROM customer"
+        cursor = conn.execute(sql)
+
+        #print(type(cursor))
+        #   결과처리
+        print(cursor.fetchone()) # 1 개 레코드 불러오기
+        print(cursor.fetchmany(2)) # 2 개 레코드 불러오기
+        print(cursor.fetchall()) # 전체 레코드 불러오기
+def test_search_data(db_file):
+    conn = create_connection(db_file)
+
+    # 명명된 플레이스 홀더
+    #   플레이스 홀더에 : 키로 이름을 명명
+    #   데이터는 dict로 전달
+    sql = """\
+    SELECT name, category, region FROM customer
+    WHERE region =: region OR category =: category
+    """
+    cursor = conn.execute(sql, {
+        "region": "부천",
+        "category": 2
+    })
+
+    for customer in cursor.fetchall(): # 전체 레코드 루프
+        print(customer)
+
 def test_connection(db_file):
     conn = create_connection(db_file)
     print(type(conn))
@@ -79,4 +109,6 @@ if __name__ == "__main__":
     #test_connection(db_file)
     #test_create_table(db_file)
     #test_insert_data(db_file, "둘리", 1, "부천")
-    test_insert_bulk_data(db_file)
+    #test_insert_bulk_data(db_file)
+    #test_select_data(db_file)
+    test_search_data(db_file)
